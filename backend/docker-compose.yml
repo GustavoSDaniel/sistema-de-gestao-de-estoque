@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  db-sgde:
+    image: postgres:17.6
+    container_name: db-sistema-gestao-de-estoque
+    environment:
+      # As variáveis agora são lidas do arquivo .env
+      # Isso evita expor informações sensíveis no controle de versão.
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5051:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
