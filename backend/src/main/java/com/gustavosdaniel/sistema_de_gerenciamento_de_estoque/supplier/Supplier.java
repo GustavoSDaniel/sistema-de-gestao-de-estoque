@@ -13,6 +13,9 @@ public class Supplier extends BaseEntity {
 
     private String name;
 
+    @Column(nullable = false, unique = true)
+    private List<String> phoneNumber;
+
     @Email
     @Column(nullable = false, unique = true)
     private String email;
