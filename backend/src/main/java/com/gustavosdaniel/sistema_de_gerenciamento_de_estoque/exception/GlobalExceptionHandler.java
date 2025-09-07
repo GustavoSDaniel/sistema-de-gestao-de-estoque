@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
 
         ErrorDTO errorDTO = new ErrorDTO();
 
-        errorDTO.setError("An unknown error occurred");
+        errorDTO.setErrorMensagem("An unknown error occurred");
 
         return new ResponseEntity<>(errorDTO, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -48,7 +48,7 @@ public class GlobalExceptionHandler {
                         fieldError.getField() + ": " + fieldError.getDefaultMessage())
                 .orElse("Validation Error occurred");
 
-        errorDTO.setError(errorMessage);
+        errorDTO.setErrorMensagem(errorMessage);
 
         return new ResponseEntity<>(errorDTO, HttpStatus.BAD_REQUEST);
     }
@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
 
         ErrorDTO errorDTO = new ErrorDTO();
 
-        errorDTO.setError("User not found");
+        errorDTO.setErrorMensagem("User not found");
 
         return new ResponseEntity<>(errorDTO, HttpStatus.BAD_REQUEST);
     }

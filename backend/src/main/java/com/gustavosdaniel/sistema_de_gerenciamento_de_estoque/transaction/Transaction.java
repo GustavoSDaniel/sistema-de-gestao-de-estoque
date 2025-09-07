@@ -5,9 +5,19 @@ import com.gustavosdaniel.sistema_de_gerenciamento_de_estoque.product.Product;
 import com.gustavosdaniel.sistema_de_gerenciamento_de_estoque.supplier.Supplier;
 import com.gustavosdaniel.sistema_de_gerenciamento_de_estoque.user.User;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
+@Getter
+@Setter
+@SuperBuilder //
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "transactions")
 public class Transaction extends BaseEntity {

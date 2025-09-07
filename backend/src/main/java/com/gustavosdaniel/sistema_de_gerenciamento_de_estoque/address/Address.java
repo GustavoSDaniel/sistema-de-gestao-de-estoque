@@ -30,5 +30,6 @@ public class Address extends BaseEntity {
     private String state;
 
     @ManyToOne
+    @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 }

@@ -3,11 +3,21 @@ package com.gustavosdaniel.sistema_de_gerenciamento_de_estoque.product;
 import com.gustavosdaniel.sistema_de_gerenciamento_de_estoque.category.Category;
 import com.gustavosdaniel.sistema_de_gerenciamento_de_estoque.common.BaseEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@SuperBuilder //
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "products")
 public class Product extends BaseEntity {
