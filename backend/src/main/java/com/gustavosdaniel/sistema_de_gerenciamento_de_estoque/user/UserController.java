@@ -15,43 +15,19 @@ import java.util.Map;
 @RequestMapping("/api/v1/user")
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    /**
-     * Retorna os dados do usuário logado
-     */
+
     @GetMapping("/me")
     public ResponseEntity<UserResponse> getCurrentUser(@AuthenticationPrincipal Jwt jwt) {
 
-        // Pega o sub do Keycloak
-        String keycloakId = jwt.getSubject();
+        UserResponse userResponse = userService.getCurrentUser(jwt);
 
-        // Busca o usuário no banco da aplicação
-        User user = userRepository.findByKeycloakId(keycloakId)
-                .orElseThrow(UserNotFoundException::new);
-
-        // Pega as roles direto do JWT
-        Map<String, Object> realmAccess = jwt.getClaim("realm_access");
-
-        List<String> roles = Collections.emptyList();
-        if (realmAccess != null && realmAccess.containsKey("roles")) {
-            roles = (List<String>) realmAccess.get("roles");
-        }
-
-        // Cria e retorna o DTO
-        UserResponse userDTO = new UserResponse(
-                user.getId(),
-                user.getKeycloakId(),
-                user.getName(),
-                user.getEmail(),
-                roles
-        );
-
-        return ResponseEntity.ok(userDTO);
+        return ResponseEntity.ok(userResponse);
     }
 }
 
